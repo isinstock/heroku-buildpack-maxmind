@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e # bail if any command fails
+
+BUILD_DIR=$1
+
+TAR="$BUILD_DIR/vendor/GeoIP2-City.mmdb.tar.gz"
+DB="$BUILD_DIR/vendor/GeoIP2-City.mmdb"
+
+if [ -f $DB ]; then
+  echo "-----> GeoIP2-City database already present"
+
+	exit 0
+fi
+
+if [ ! -f $TAR ]; then
+	echo "-----> You must provide the GeoIP2-City database at $TAR"
+
+	exit 1
+fi
+
+echo "-----> GeoIP2-City: Extracting $TAR"
+
+tar -zxvf $TAR -C $BUILD_DIR --no-anchored --strip-components=1 "vendor/GeoIP2-City.mmdb"
+
+if [ -f $TAR ]; then
+	rm $TAR
+fi

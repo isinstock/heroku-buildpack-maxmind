@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "MaxMind GeoIP Database Extractor"
+exit 0 # should always run
