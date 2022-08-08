@@ -3,9 +3,10 @@
 set -e # bail if any command fails
 
 BUILD_DIR=$1
+VENDOR_DIR="$BUILD_DIR/vendor"
 
-TAR="$BUILD_DIR/vendor/GeoIP2-City.mmdb.tar.gz"
-DB="$BUILD_DIR/vendor/GeoIP2-City.mmdb"
+TAR="$VENDOR_DIR/GeoIP2-City.mmdb.tar.gz"
+DB="$VENDOR_DIR/GeoIP2-City.mmdb"
 
 if [ -f $DB ]; then
   echo "-----> GeoIP2-City database already present"
@@ -21,7 +22,7 @@ fi
 
 echo "-----> GeoIP2-City: Extracting $TAR to $DB"
 
-tar -zxvf $TAR -C $BUILD_DIR --no-anchored --strip-components=1 $DB
+tar -zxvf $TAR -C $VENDOR_DIR --no-anchored --strip-components=1
 
 if [ -f $TAR ]; then
 	rm $TAR
