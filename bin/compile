@@ -19,10 +19,11 @@ if [ ! -f $TAR ]; then
 	exit 1
 fi
 
-echo "-----> GeoIP2-City: Extracting $TAR"
+echo "-----> GeoIP2-City: Extracting $TAR to $DB"
 
-tar -zxvf $TAR -C $BUILD_DIR --no-anchored --strip-components=1 "vendor/GeoIP2-City.mmdb"
+tar -zxvf $TAR -C $BUILD_DIR --no-anchored --strip-components=1 $DB
 
 if [ -f $TAR ]; then
 	rm $TAR
+	echo "-----> GeoIP2-City: Removed $TAR"
 fi
